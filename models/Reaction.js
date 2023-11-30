@@ -17,15 +17,13 @@ const reactionSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-      get: (date) => timeSince(date),
+      default: Date.now(),
     },
   },
   {
     toJSON: {
       getters: true,
     },
-    id: false,
   },
 );
 

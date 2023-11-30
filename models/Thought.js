@@ -11,9 +11,7 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-      // retrieve code below from source url: https://stackoverflow.com/questions/70724966/how-to-use-getter-or-setter-with-mongoose-timestamps
-      get: (date) => timeSince(date),
+      default: Date.now(),
     },
     username: {
       type: String,

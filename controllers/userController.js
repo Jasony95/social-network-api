@@ -68,23 +68,23 @@ module.exports = {
   // Delete a user
   async deleteUser(req, res) {
     try {
-      const user = await User.findOneAndRemove({ _id: req.params.id });
+      const user = await User.findOneAndDelete({ _id: req.params.id });
       
       if (!user) {
         return res.status(404).json({ message: 'No user with this id' });
       }
 
-      const thought = await Thought.findOneAndUpdate(
-        { users: req.params.id },
-        { $pull: { users: req.parmas.id } },
-        { new: true }
-      );
+      // const thought = await Thought.findOneAndUpdate(
+      //   { users: req.params.id },
+      //   { $pull: { users: req.parmas.id } },
+      //   { new: true }
+      // );
 
-      if (!thought) {
-        return res.status(404).json({
-          message: 'User delete, but no thoughts found',
-        })
-      }
+      // if (!thought) {
+      //   return res.status(404).json({
+      //     message: 'User delete, but no thoughts found',
+      //   })
+      // }
 
       res.json({message: 'User successfully deleted'})
     } catch (err) {
@@ -115,10 +115,12 @@ module.exports = {
   },
   // Remove friend from a user
   async removeFriend(req, res) {
+    console.log("Deleting a friend.");
+
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.id },
-        { $pull: { friend: { _id: req.params.id } } },
+        { $pull: { friends: { _id: req.params.friendId } } },
         { runValidators: true, new: true }
       );
 
