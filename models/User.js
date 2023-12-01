@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const { isEmail } = require('validator');
-const thoughtSchema = require('./Thought');
+const thoughtschema = require('./Thought');
 
 const userSchema = new Schema(
   {
